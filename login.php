@@ -112,6 +112,7 @@ if (isset($_GET['error']) && trim($_GET['error']) != '') {
                 </div>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
             </form>
+            <a href="fb.php" class="btn btn-info">Login using Facebook</a>
 
         </div> <!-- /container -->
 

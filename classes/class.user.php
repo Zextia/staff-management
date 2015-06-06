@@ -47,6 +47,19 @@ class user {
 	    return false;
 	}
     }
+    
+    function fblogin($email = '') {
+        if(trim($email) == '') {
+            return false;
+        }
+        if ($this->db->select($this->table, "username='$email' AND type=1 ")) {
+            $this->user = $this->db->get_results();
+            $this->is_logged_in = true;
+            $_SESSION['id'] = $this->user[0]['id'];
+            header("Location:index.php?action=dashboard");
+        }
+        
+    }
 
     function logout() {
 	$this->is_logged_in = false;

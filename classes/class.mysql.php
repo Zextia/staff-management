@@ -3,14 +3,12 @@
 class database {
 
     private $resource;
-    private $link;
     private $num_rows = null;
     private $valid_resource = false;
 
     function __construct() {
-	//mysql_connect(HOSTNAME, USERNAME, PASSWORD);
-	//mysql_select_db(DATABASE);
-        $this->link = mysqli_connect(HOSTNAME, USERNAME, PASSWORD, DATABASE);
+	mysql_connect(HOSTNAME, USERNAME, PASSWORD);
+	mysql_select_db(DATABASE);
 	return $this;
     }
 
@@ -60,7 +58,7 @@ class database {
 
     private function query($sql = '', $type = 'select') {
 	if (trim($sql) != '') {
-	    $this->resource = mysqli_query($this->link, $sql);
+	    $this->resource = mysql_query($sql);
 	    if (!$this->resource) {
 		return false;
 	    }
@@ -129,14 +127,14 @@ class database {
 
     function get_results() {
 	$result = array();
-	while ($row = mysqli_fetch_array($this->resource)) {
+	while ($row = mysql_fetch_array($this->resource)) {
 	    $result[] = $row;
 	}
 	return $result;
     }
 
     function get_one_result() {
-	return mysqli_fetch_array($this->resource);
+	return mysql_fetch_array($this->resource);
     }
 
     function get_number_of_results() {
@@ -148,7 +146,7 @@ class database {
     }
 
     function set_number_of_results() {
-	$this->num_rows = mysqli_num_rows($this->resource);
+	$this->num_rows = mysql_num_rows($this->resource);
     }
 
     private function create_insert_sql($table = '', $data = array()) {
