@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		}
 	} else {
 		if ($user->login($_POST['username'], $_POST['password'])) {
-			header("Location:index.php?action=dashboard&type=1");
+			header("Location:index.php?action=dashboard&type=1&msg=Welcome");
 		} else {
 			header("Location:login.php?error=1");
 		}

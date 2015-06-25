@@ -6,7 +6,11 @@ if (isset($_GET['action']) && (trim($_GET['action']) != '' || $_GET['action'] ==
 
 switch($_GET['action']) {
 	case 'dashboard':
-		header("Location:dashboard.php");
+		$msg = '';
+		if(isset($_GET['msg']) && trim($_GET['msg']) != '') {
+			$msg = "?msg={$_GET['msg']}";
+		}
+		header("Location:dashboard.php$msg");
 		break;
 	case 'logout':
 		header("Location:logout.php");

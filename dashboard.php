@@ -53,15 +53,22 @@ foreach ($_departments as $_k => $_department) {
     <body>
 
         <?php
-//include_once 'nav.php';
+include_once 'nav.php';
         ?>
 
+        <script src="js/jquery.min.js"></script>
         <div class="container-fluid">
             <div class="row">
                 <?php
                 include_once 'sidebar.php';
                 ?>
+				<div id="test_hack">123</div>
                 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+					<?php
+					if(isset($_GET['msg']) && trim($_GET['msg']) != '') {
+						echo $_GET['msg'];
+					}
+					?>
                     <h2 class="sub-header">Welcome to Staff Management</h2>
                     <?php
                     //utility::pr($users);
@@ -75,7 +82,6 @@ foreach ($_departments as $_k => $_department) {
         <!-- Bootstrap core JavaScript
         ================================================== -->
         <!-- Placed at the end of the document so the pages load faster -->
-        <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script type="text/javascript" src="js/jsapi.js"></script>
         <script type="text/javascript">
